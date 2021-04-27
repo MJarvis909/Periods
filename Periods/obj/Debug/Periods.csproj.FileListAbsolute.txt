@@ -1,0 +1,7 @@
+C:\Users\Maks\source\repos\Periods\Periods\obj\Debug\Periods.csprojAssemblyReference.cache
+C:\Users\Maks\source\repos\Periods\Periods\obj\Debug\Periods.csproj.CoreCompileInputs.cache
+C:\Users\Maks\source\repos\Periods\Periods\bin\Debug\Periods.exe.config
+C:\Users\Maks\source\repos\Periods\Periods\bin\Debug\Periods.exe
+C:\Users\Maks\source\repos\Periods\Periods\bin\Debug\Periods.pdb
+C:\Users\Maks\source\repos\Periods\Periods\obj\Debug\Periods.exe
+C:\Users\Maks\source\repos\Periods\Periods\obj\Debug\Periods.pdb
