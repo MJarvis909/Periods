@@ -35,54 +35,51 @@ namespace Periods
                 new Period(25, 30)
             };
 
-            list.Sort((x, y) => x.Start.CompareTo(y.Start)); //sorting list of periods
+            list.OrderBy(x => x.Start); //sorting list of periods
 
             var stack = new Stack<Period>();
 
-            foreach (var CurrentStack in list) //Pushing list into stack merging overlaping periods
+            foreach (var period in list) //Pushing list into stack merging overlaping periods
             {
-                switch (stack.Count)             
+
+                if (stack.Count == 0)
                 {
-                    case 0:
-                        stack.Push(CurrentStack);
-                        break;
+                    stack.Push(period);
 
-                    default:
-                
-                        var LastStack = stack.Peek();
-
-                        if (LastStack.Stop >= CurrentStack.Start && LastStack.Stop <= CurrentStack.Stop)
-                        {
-                            int popedPeriod = LastStack.Start;
-                            stack.Pop();
-                            stack.Push(new Period(popedPeriod, CurrentStack.Stop));
-                        }
-                        if (LastStack.Stop >= CurrentStack.Start && LastStack.Stop > CurrentStack.Stop)
-                        {
-                            break;
-                        }
-                        else if (LastStack.Stop < CurrentStack.Start)
-                        {
-                            stack.Push(CurrentStack);
-                        }
-                        break;
                 }
-            }
-            list.Clear(); //cleaing the list
+                else
+                {
+                    var LastStack = stack.Peek();
 
-            foreach (var period in stack) //Adding periods from list to stack
+                    if (LastStack.Stop >= period.Start && LastStack.Stop <= period.Stop)
+                    {
+                        int popedPeriod = LastStack.Start;
+                        stack.Pop();
+                        stack.Push(new Period(popedPeriod, period.Stop));
+                    }
+                    //if (LastStack.Stop >= period.Start && LastStack.Stop > period.Stop)
+                    else if (LastStack.Stop < period.Start)
+                    {
+                        stack.Push(period);
+                    }
+                } 
+            }
+            //list.Clear(); //cleaing the list -- Don't reuse lists
+
+            var results = new List<Period>();
+
+            foreach (var period in stack) //Adding periods from stack to list
             {
-                list.Add(period);
+                results.Add(period);
             }
 
-            list.Reverse(); //Reversing the list
+            results.Reverse(); //Reversing the list
 
-            foreach (var period in list) //Displaying list of periods
+            foreach (var period in results) //Displaying list of periods
             {
                 Console.WriteLine(period.Start + " " + period.Stop);
             }
 
-            Console.ReadKey();
         }
     }
 }
